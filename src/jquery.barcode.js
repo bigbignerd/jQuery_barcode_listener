@@ -2,8 +2,10 @@
 
 	var barcode = {
 
-		targetForm : '#barCode',
-		targetObj  : '',
+		listenerObj: null,
+		letter : false,
+		number : true,
+
 		oneKeyTime : '', /* 一次按键时间间隔 */
 		twoKeyTime : '', /* 两次按键时间间隔 */
 		keyDownTime: '', /* 键按下的时间    */
@@ -13,14 +15,13 @@
 		ninekeyVal : 57, /* 数字9的key值   */
 		akeyVal    : 65, /* a的key值      */
 		zkeyVal    : 90, /* z的key值      */
-		listenerObj: null,
-		letter : false,
-		number : true,
+		
 		show : function(){},
 
 		checkHandInput : function(){
+					console.log(this.oneKeyTime);
 
-			if(this.oneKeyTime > this.spanTime){
+			if((this.oneKeyTime > this.spanTime) || this.twoKeyTime > this.spanTime){
 				return true;
 			}else{
 				return false;
@@ -29,8 +30,9 @@
 		on_key_down : function (){
 			var that = this;
 			this.listenerObj.keydown(function(e){
+
 				if(e.which !== 13 && !(that.in_range(e.which))){
-					$(that.targetForm).val('');
+					$(that.listenerObj).val('');
 					return ;
 				}
 				var d = new Date();
@@ -53,7 +55,7 @@
 
 				if(isHand && that.in_range(e.which)){
 					layer.msg('禁止手动输入');
-					$(that.targetForm).val("");
+					$(that.listenerObj).val("");
 				}
 			})
 		},
@@ -66,11 +68,11 @@
 			});
 		},
 		check_barcode : function(){
-			var code = $(this.targetForm).val();
+			var code = $(this.listenerObj).val();
 
 			if(code.length !== this.barcodeLen){
-				$(this.targetForm).val("").focus();
-				layer.msg('条形码不合法',{time : 800});
+				$(this.listenerObj).val("").focus();
+				// layer.msg('条形码不合法',{time : 800});
 			}else{
 				return true;
 			}

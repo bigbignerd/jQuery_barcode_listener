@@ -35,6 +35,8 @@
 		<script type="text/javascript">
 			$("#barCode").startListen({
 				barcodeLen : 10,
+				letter : true,
+				number : true,
 				show : function(code){
 					layer.msg(code);
 				}
