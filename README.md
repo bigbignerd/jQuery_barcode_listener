@@ -1,0 +1,2 @@
+# jQuery_barcode_listener
+基于jQuery的扫码枪监听器
