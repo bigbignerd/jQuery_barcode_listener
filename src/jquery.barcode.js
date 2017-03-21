@@ -5,6 +5,7 @@
 		listenerObj: null,
 		letter : false,
 		number : true,
+		check : true,
 
 		oneKeyTime : '', /* 一次按键时间间隔 */
 		twoKeyTime : '', /* 两次按键时间间隔 */
@@ -53,7 +54,7 @@
 
 				var isHand = that.checkHandInput();
 
-				if(isHand && that.in_range(e.which)){
+				if(that.check && isHand && that.in_range(e.which)){
 					layer.msg('禁止手动输入');
 					$(that.listenerObj).val("");
 				}
