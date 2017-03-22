@@ -22,7 +22,7 @@
 		checkHandInput : function(){
 					console.log(this.oneKeyTime);
 
-			if((this.oneKeyTime > this.spanTime) || this.twoKeyTime > this.spanTime){
+			if((this.oneKeyTime > this.spanTime)){
 				return true;
 			}else{
 				return false;
